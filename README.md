@@ -15,8 +15,8 @@ pygame >= 2.1
 ↑マリオと敵が接触した時やマリオが画面外に出た時に”GameOver”と表示させる関数  
 * BGM :ゲーム中に流れる音楽の設定  
 ### ToDo   
--[touch_enemy()]はゲームオーバー判定  
--[pg.mixer.music.load()]はBGM再生機能  
+- [touch_enemy()]はゲームオーバー判定  
+- [pg.mixer.music.load()]はBGM再生機能  
 ### メモ  
 * キャラクターの変数はmro  
 * 移動に使うキーは左矢印、右矢印、jキー  
