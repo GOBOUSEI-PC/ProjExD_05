@@ -23,11 +23,6 @@ class Stage:
         self.rect=self.image.get_rect()
         self.rect.topleft=(square*x,earth+square*y)
         self.speed=speed
-
-        # # ブロックの画像の大きさの確認用
-        # self.image_width, self.image_height = self.image.get_size()
-        # print(f"画像の幅: {self.image_width}, 画像の高さ: {self.image_height}")
-
     
     def update(self):
         self.rect.x-=self.speed
@@ -59,9 +54,6 @@ class mario():
         """
         self.mro = pg.image.load("ex05/fig/mario_4.png") #デフォルトのマリオ画像
         self.mro = pg.transform.rotozoom(self.mro, 0, 0.2)
-        # self.mro1_2 = pg.transform.flip(self.mro, True, False) #左右反転
-        # self.mro1_2_rct = self.mro1_2.get_rect()
-        # self.mro1_2_rct.center =[100, earth]
         self.whidth,self.height=self.mro.get_size()
         self.gravity=2
         self.x=10*square
@@ -95,8 +87,10 @@ class mario():
 
         self.velocity+=self.gravity
         self.y+=self.velocity
+
         if end == False:
             self.velocity_x-=speed
+
         self.x+=self.velocity_x
         self.mro_rct.x=self.x
         self.mro_rct.y=self.y
@@ -109,7 +103,7 @@ class mario():
         """
         screen.blit(self.mro,self.mro_rct)
 
-#　ゴール機能
+#ゴール機能
 class Goal_m(pg.sprite.Sprite):
 
     """
@@ -118,7 +112,6 @@ class Goal_m(pg.sprite.Sprite):
     def __init__(self):
                 
         # ゴールを表示
-            # screen = pg.display.set_mode((800, 900)) #画面の大きさ
             goal_img = pg.image.load("ex05/goal.png")
             goal2_img = pg.image.load("ex05/goal_txt.jpeg") #時間があったら
             self.goal_img = pg.transform.scale(goal_img, (250, 500)) #画像の大きさ
@@ -126,46 +119,13 @@ class Goal_m(pg.sprite.Sprite):
             self.goal_rct = self.goal_img.get_rect()
             self.goal_rct.x=WIDTH*3//4
             self.goal_rct.y=earth-square*8-20
-            # enn = pg.Surface((20, 20))
 
-    def update(self,screen):        #キャラがゴールする
+    def update(self,screen):#キャラがゴールする
             screen.blit(self.goal_img, self.goal_rct)
-
-
-        # key_lst= {  # 押下キーと移動量の辞書
-        # pg.K_j: (0, +1),
-        # pg.K_LEFT: (-1, 0),
-        # pg.K_RIGHT: (+1, 0),
-        # }
-        # j_u = 4
-        # if self.key_ls[pg.K_j]: #jキーが押されたら
-        #     # self.mro.change_img(self.mro2, screen)
-        #     self.mro.move_ip((0, j_u)) #ジャンプするマリオ画像を上に4動かす
-        #     self.mro_rct.move_ip(0, j_u)
-        
-        # #self.mro.change_img(self.mro2, screen)
-        # #self.mro2.move_ip((0, -j_u)) #ジャンプするマリオ画像を下に4動かす
-        # self.mro_rct.move_ip(0, -j_u)
-
-        # if not self.key_ls[pg.K_LEFT]: #左矢印が押されたら
-        #     #self.mro.change_img(self.mro1_2, screen)
-        #     #self.mro1_2.move_ip((-1, 0))
-        #     #screen.blit(self.mro1_2, self.mro1_2_rct)
-        #     self.mro_rct.move_ip(-1, -10)
-        #     screen.blit(self.mro, self.mro_rct)
-        # if not self.key_ls[pg.K_RIGHT]: #右矢印が押されたら
-        #     #self.mro.change_img(self.mro1, screen)
-        #     #self.mro1.move_ip((+1, 0))
-        #     #screen.blit(self.mro1, self.mro1_rct)
-        #     self.mro_rct.move_ip(+1, 0)
-        #     screen.blit(self.mro, self.mro_rct)
 
 """
 HEAD
 """
-
-        
-
 class Tekimod:
     
     def __init__(self):
@@ -177,7 +137,7 @@ class Tekimod:
         self.kira_rct.center=[1600,400]
         self.kira_x=-5
         self.kira_y=0
-        #ボム兵  self.image = tools.load_image("data", "rabipple.png", -1)
+        #ボム兵
 
         self.bomu_img=pg.image.load("ex05/fig/bomu1.1.png")
         self.bomu_img=pg.transform.rotozoom(self.bomu_img,0,2)
@@ -238,7 +198,6 @@ def check_collision(mob,stage):
             hanntei.append(4)
 
     return hanntei
-        #super().__init__()
     
 
         
@@ -248,9 +207,6 @@ def main():
     pg.display.set_caption("タイトル")
 
     screen = pg.display.set_mode((WIDTH,HEIGHT))
-    # back = pg.image.load("ex05/haikei.png")
-    #back = pg.image.load("ex04/fig/pg_bg.jpg")
-    # mrio = pg.sprite.Group()
     teki=Tekimod()
     ma=mario()
     clock = pg.time.Clock()
@@ -455,16 +411,13 @@ def main():
     pg.mixer.music.play()
 
     while True:
-    # for i in range(1000):
         for event in pg.event.get():
             if event.type==pg.KEYDOWN and event.key==pg.K_SPACE:
                 return
         screen.fill((0,0,255))#背景仮
-
-        # screen.blit(mo.mro,(100,100))
+ 
         now_time=pg.time.get_ticks()
         
-        # print(now_time) #時間確認用
         if now_time-start_time>=95000:
             for scroller in scrollers:
                 scroller.speed=0
@@ -505,18 +458,6 @@ def main():
         for key, mv in ma.key_ls.items():
             if key_lst[key]:
                 ma.x += mv[0]
-        # print(mro_mv)
-            # if check_collision(teki.bomu_rct,scrollers[i].rect)==2:
-            #     teki.bomu_x*=-1
-            #     teki.bomu_y=teki.bomu_y
-            # if check_collision(teki.kuribo_rct,scrollers[i].rect)==2:
-            #     teki.kuribo_x*=-1
-            #     teki.kuribo_y=teki.kuribo_y
-
-        #teki=Tekimod()
-
-    
-
 
 
         if goal is not None:
@@ -530,15 +471,7 @@ def main():
                 time.sleep(10)
                 return
 
-        
 
-        # mrio.update(screen)
-        # mo.update(screen)
-        # pg.display.update()
-        # screen.blit(back,[0,0])
-        # clock.tick(50)
-
-    # screen = pg.display.set_mode((WIDTH,HEIGHT))
         ma.move(speed,end)
 
         for scroller in scrollers:
@@ -552,25 +485,6 @@ def main():
         pg.display.update()
         pg.display.flip()
         clock.tick(60)
-        # clock.tick(1000)
-
-
-    # 敵mob
-
-    # tmr=0
-    # clock=pg.time.Clock()
-
-    # back = pg.image.load("ex05/fig/pg_bg.jpg")
-   
-        # for event in pg.event.get():
-        #     if event.type == pg.QUIT: 
-        #         return
-       
-        
-        #teki.update(screen)#敵mobを追加
-        
-        
-    
         
         pg.display.update()
        
