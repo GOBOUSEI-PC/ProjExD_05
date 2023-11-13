@@ -204,7 +204,7 @@ def check_collision(mob,stage):
 
 
 def main():
-    pg.display.set_caption("タイトル")
+    pg.display.set_caption("Mario")
 
     screen = pg.display.set_mode((WIDTH,HEIGHT))
     teki=Tekimod()
@@ -215,10 +215,6 @@ def main():
     clock = pg.time.Clock() #時間を表す
     goal = None
         
-
-    """
-    良輔
-    """
     clock=pg.time.Clock()
 
     pg.init()
